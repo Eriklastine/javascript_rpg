@@ -19,8 +19,7 @@ const monsterHealthText =document.querySelector("#monsterHealth");
 // const gameScreen = document.querySelector("#image1");
 const weapons = [
   { name: 'stick',
-    power: 5,
-    "game image":  
+    power: 5 
   },
   { name: 'dagger',
     power: 30 },
