@@ -18,26 +18,35 @@ const monsterName = document.querySelector("#monsterName");
 const monsterHealthText =document.querySelector("#monsterHealth");
 // const gameScreen = document.querySelector("#image1");
 const weapons = [
-  { name: 'stick', power: 5 },
-  { name: 'dagger', power: 30 },
-  { name: 'claw hammer', power: 50 },
-  { name: 'sword', power: 100 }
+  { name: 'stick',
+    power: 5,
+    "game image":  
+  },
+  { name: 'dagger',
+    power: 30 },
+  { name: 'claw hammer',
+    power: 50 },
+  { name: 'sword',
+    power: 100 }
 ];
 const monsters = [
   {
     name: "slime",
     level: 2,
-    health: 15
+    health: 15,
+    "game image": "./images/slime.png"
   },
   {
     name: "fanged beast",
     level: 8,
-    health: 60
+    health: 60,
+    "game image": "./images/wolf4.png"
   },
   {
     name: "dragon",
     level: 20,
-    health: 300
+    health: 300,
+    "game image": "./images/dragon1.png"
   }
 ]
 const locations = [
@@ -45,37 +54,43 @@ const locations = [
         name: "town square",
         "button text": ["Go to store", "Go to cave", "Fight dragon"],
         "button functions": [goStore, goCave, fightDragon],
-        text: "You are in the town square. You see a sign that says \"Store\"."
+        text: "You are in the town square. You see a sign that says \"Store\".",
+        "game image": "./images/town.png"
     },
     {
         name: "store",
         "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
         "button functions": [buyHealth, buyWeapon, goTown],
-        text: "You enter the store."
+        text: "You enter the store.",
+        "game image": "./images/shop.png"
     },
     {
         name: "cave",
         "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
         "button functions": [fightSlime, fightBeast, goTown],
-        text: "You enter the cave. You see some monsters."
+        text: "You enter the cave. You see some monsters.",
+        "game image": "./images/cave2.png"
     },
     {
         name: "fight",
         "button text": ["Attack", "Dodge", "Run"],
         "button functions": [attack, dodge, goTown],
-        text: "You are fighting a monster."
+        text: "You are fighting a monster.",
+        "game image": "./images/cave2.png"
     },
     {
         name: "kill monster",
         "button text": ["Go to town square", "Go to town square", "Go to town square"],
         "button functions": [goTown, goTown, easterEgg],
-        text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
+        text: 'The monster screams "Arg!" as it dies.\n You gain experience points and find gold.',
+        "game image": "./images/gold.png"
     },
     {
         name: "lose",
         "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
         "button functions": [restart, restart, restart],
-        text: "You die. ☠️"
+        text: "You die. ☠️",
+        "game image": "./images/dead.png"
     },
     { 
         name: "win", 
@@ -105,6 +120,9 @@ function update(location) {
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
   text.innerText = location.text;
+//   document.querySelector("#image2").style.display = "none";
+document.querySelector("#image1").src = location["game image"];
+
 }
 
 function goTown() {
@@ -183,6 +201,7 @@ function goFight() {
   monsterStats.style.display = "block";
   monsterName.innerText = monsters[fighting].name;
   monsterHealthText.innerText = monsterHealth;
+  document.querySelector("#image1").src = monsters[fighting]["game image"];
 }
 
 function attack() {
@@ -192,7 +211,7 @@ function attack() {
   if (isMonsterHit()) {
     monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;    
   } else {
-    text.innerText += " You miss.";
+    text.innerText += "\n You miss.";
   }
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
@@ -202,7 +221,7 @@ function attack() {
     fighting === 2 ? winGame() : defeatMonster();
   }
   if (Math.random() <= .1 && inventory.length !== 1) {
-    text.innerText += " Your " + inventory.pop() + " breaks.";
+    text.innerText += "\n Your " + inventory.pop() + " breaks.";
     currentWeapon--;
   }
 }
@@ -246,6 +265,8 @@ function restart() {
   goldText.innerText = gold;
   healthText.innerText = health;
   xpText.innerText = xp;
+  document.querySelector("#image1").src = "./images/dragon.png"
+//   document.querySelector("#image2").style.display = "block";
   goTown();
 }
 

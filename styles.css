@@ -6,13 +6,15 @@ body {
     background-color: black;
     color: white;
     padding: 10px;
+    font-size: 18px;
+    text-align: center;
 }
 #title {
     width: 90%;
     height: 40px;
     text-align: center;
     background-color: rgba(92, 96, 106, 0.901);
-    color: red;
+    color: rgb(147, 14, 14);
     margin: auto;
     padding: 10px;
     border: 5px solid black;
@@ -27,7 +29,7 @@ body {
 #gameScreen {
     width: 90%;
     height: 300px;
-    background-color: rgb(169, 157, 157);
+    background-color: rgb(50, 48, 48);
     margin: auto;
     padding: 10px;
     margin-bottom: 20px;
@@ -36,7 +38,7 @@ body {
     display: flex;
 }
 #gameScreen #image1 {
-    width: 300px;
+    width: 90%;
     height: auto;
     margin: 50px auto;
     align-items: center;
